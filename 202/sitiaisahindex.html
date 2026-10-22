@@ -1,1 +1,793 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>คู่มือการสำรวจภาคสนาม | คุณภาพน้ำ</title>
 
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --navy: #103e59;
+  --blue: #145b79;
+  --teal: #29a8b2;
+  --light: #edf8f8;
+  --text: #244d70;
+  --line: #d7e7ed;
+}
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Sarabun', sans-serif;
+  color: var(--text);
+  background: #fff;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.container {
+  width: 100%;
+  max-width: 920px;
+  margin: auto;
+  padding-left: 28px;
+  padding-right: 28px;
+}
+
+/* ส่วนหัวเว็บไซต์ */
+.hero {
+  min-height: 340px;
+  display: flex;
+  align-items: center;
+  color: white;
+  padding: 38px 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(5, 43, 56, 0.88),
+      rgba(10, 55, 70, 0.58) 65%,
+      rgba(10, 55, 70, 0.24)
+    ),
+    url('https://images.unsplash.com/photo-1437482078695-73f5ca6c96e2?auto=format&fit=crop&w=1800&q=85')
+    center 52% / cover no-repeat;
+}
+
+.hero-inner {
+  max-width: 920px;
+  width: 100%;
+  margin: auto;
+  padding: 0 28px;
+}
+
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 24px;
+}
+
+/* โลโก้ */
+.logo {
+  width: 76px;
+  height: 76px;
+  flex-shrink: 0;
+  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.15));
+}
+
+.brand-name {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  line-height: 1.7;
+}
+
+.brand-name span {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: #c9eff0;
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 2px;
+  margin-bottom: 5px;
+  color: #bceff0;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(27px, 4.5vw, 38px);
+  line-height: 1.45;
+  font-weight: 700;
+  color: #fff;
+}
+
+.hero h2 {
+  margin: 2px 0 12px;
+  font-size: 17px;
+  font-weight: 400;
+}
+
+.accent {
+  width: 42px;
+  height: 4px;
+  background: #35d3d5;
+  margin: 15px 0;
+}
+
+.hero p {
+  max-width: 600px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+/* แถบสรุป 4 หัวข้อ */
+.topic-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 15px max(28px, calc((100% - 864px) / 2));
+  background: #f5fafb;
+  border-bottom: 1px solid var(--line);
+}
+
+.topic {
+  text-align: center;
+  padding: 5px 10px;
+  border-right: 1px solid #c7dce4;
+}
+
+.topic:last-child {
+  border-right: none;
+}
+
+.topic strong {
+  display: block;
+  font-size: 23px;
+  line-height: 1.4;
+  color: var(--teal);
+}
+
+.topic span {
+  font-size: 11px;
+  color: var(--text);
+}
+
+/* เนื้อหาแนวตั้ง */
+main {
+  padding-top: 28px;
+  padding-bottom: 24px;
+}
+
+.section {
+  padding: 25px 0 28px;
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: 20px;
+}
+
+.section:first-child {
+  padding-top: 5px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  margin-bottom: 16px;
+}
+
+.number {
+  font-size: 43px;
+  line-height: 1.15;
+  font-weight: 700;
+  color: var(--teal);
+  min-width: 66px;
+}
+
+.section h3 {
+  margin: 0;
+  font-size: 19px;
+  line-height: 1.6;
+  color: var(--navy);
+}
+
+.subtitle {
+  font-size: 12px;
+  color: #49809a;
+}
+
+.section p {
+  margin: 10px 0;
+}
+
+.section ul, .section ol {
+  padding-left: 23px;
+  margin: 12px 0;
+}
+
+.section li {
+  margin: 7px 0;
+  padding-left: 2px;
+}
+
+.section li::marker {
+  color: var(--teal);
+}
+
+.note {
+  margin-top: 16px;
+  padding: 13px 17px;
+  background: var(--light);
+  border-left: 4px solid var(--teal);
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+/* จัดเลย์เอาต์เนื้อหาคู่กับรูปภาพด้านข้าง */
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  gap: 22px;
+  align-items: start;
+  margin: 15px 0;
+}
+
+.content-grid.reverse {
+  grid-template-columns: 240px 1fr;
+}
+
+.side-img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* ตารางพารามิเตอร์ */
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 16px 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  border: 1px solid var(--line);
+}
+
+th {
+  background: var(--blue);
+  color: white;
+  text-align: left;
+  padding: 10px 13px;
+  font-weight: 600;
+}
+
+td {
+  padding: 10px 13px;
+  border: 1px solid var(--line);
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) {
+  background: #f5fafb;
+}
+
+/* แกลเลอรีรูปภาพอุปกรณ์ภาคสนาม */
+.equipment-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 22px 0;
+}
+.equipment-card {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: linear-gradient(180deg, #f7fcfd, #ffffff);
+  padding: 14px 10px 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+.equipment-card strong { color: var(--navy); font-size: 14px; }
+.equipment-card span { color: #547082; font-size: 12px; line-height: 1.5; }
+.equipment-card .equipment-photo {
+  display: block;
+  width: 100%;
+  max-width: 220px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: 0 auto 8px;
+  border: 1px solid #d7e7ed;
+}
+
+/* รายการตรวจสอบ */
+.checklist {
+  margin-top: 28px;
+  padding: 20px 22px;
+  background: linear-gradient(120deg, #edf8f8, #f7fbfc);
+  border-radius: 8px;
+  scroll-margin-top: 20px;
+}
+
+.checklist h3 {
+  margin: 0;
+  font-size: 18px;
+  color: var(--navy);
+}
+
+.checklist > p {
+  margin: 2px 0 14px;
+  font-size: 12px;
+}
+
+.check-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 22px;
+}
+
+.check-item {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.check-item input {
+  accent-color: var(--teal);
+  margin-top: 6px;
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+.check-item input:checked + span {
+  text-decoration: line-through;
+  opacity: 0.55;
+}
+
+.checklist-actions {
+  margin-top: 16px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.reset-btn {
+  padding: 7px 19px;
+  color: var(--blue);
+  background: white;
+  border: 1px solid var(--teal);
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+}
+.reset-btn:hover { background: #e0f4f5; }
+
+.export-btn {
+  padding: 7px 19px;
+  color: white;
+  background: var(--blue);
+  border: 1px solid var(--blue);
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+}
+.export-btn:hover { background: var(--navy); }
+
+/* ส่วนท้าย */
+footer {
+  margin-top: 10px;
+  background: linear-gradient(120deg, #103e59, #0b3048);
+  color: white;
+  padding: 28px 0 18px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 28px;
+}
+
+.footer-col { min-width: 0; }
+.footer-col h3 { margin: 0 0 10px; font-size: 15px; color: white; }
+
+footer p, footer li {
+  font-size: 11px;
+  line-height: 1.9;
+}
+footer p { margin: 5px 0; }
+footer ol { padding-left: 19px; margin: 0; }
+
+.footer-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.25);
+  margin: 22px 0;
+}
+
+.author-info {
+  display: grid;
+  grid-template-columns: 105px 1fr;
+  gap: 5px 12px;
+  font-size: 12px;
+  line-height: 1.8;
+}
+.author-info strong { font-weight: 500; color: #bceff0; }
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.footer-brand .logo { width: 53px; height: 53px; }
+.footer-brand-name { font-size: 12px; font-weight: 700; letter-spacing: 1px; }
+
+.copyright {
+  margin-top: 22px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  font-size: 10px;
+  text-align: center;
+  color: #b6d1de;
+}
+
+/* แสดงผลบนโทรศัพท์ */
+@media (max-width: 700px) {
+  .container, .hero-inner { padding-left: 20px; padding-right: 20px; }
+  .hero { min-height: 360px; background-position: center; }
+  .logo { width: 62px; height: 62px; }
+  .brand-lockup { gap: 12px; }
+  .hero h1 { font-size: 27px; }
+  .hero h2 { font-size: 15px; }
+  .topic-bar { grid-template-columns: 1fr 1fr; padding: 10px 12px; }
+  .topic { padding: 9px 4px; }
+  .topic:nth-child(2) { border-right: none; }
+  .topic:nth-child(1), .topic:nth-child(2) { border-bottom: 1px solid var(--line); }
+  .number { font-size: 36px; min-width: 52px; }
+  .section h3 { font-size: 16px; }
+  .section { padding: 22px 0; }
+  .checklist { padding: 16px; }
+  .check-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 18px; }
+  .author-info { grid-template-columns: 95px 1fr; }
+  .equipment-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+
+  .content-grid, .content-grid.reverse {
+    grid-template-columns: 1fr;
+  }
+  .side-img {
+    height: 180px;
+    margin-top: 10px;
+  }
+}
+
+@media print {
+  .reset-btn, .export-btn { display: none; }
+  .hero, footer { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ส่วนหัวเว็บไซต์ -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="brand-lockup">
+      <svg class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="โลโก้หยดน้ำและกระแสน้ำ">
+        <defs>
+          <linearGradient id="waterGradient" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#62e2df"/>
+            <stop offset="100%" stop-color="#1597b4"/>
+          </linearGradient>
+        </defs>
+        <circle cx="50" cy="50" r="46" fill="none" stroke="#b9f1ee" stroke-width="1.5" opacity="0.8"/>
+        <path d="M50 10 C42 24 25 42 25 59 C25 75 36 86 50 86 C64 86 75 75 75 59 C75 42 58 24 50 10Z" fill="url(#waterGradient)"/>
+        <path d="M34 57 C42 50 51 50 66 57 C58 65 46 68 34 64" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M35 72 C44 76 56 76 64 70" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+        <circle cx="69" cy="31" r="4" fill="#ffffff"/>
+      </svg>
+      <div class="brand-name">
+        AQUA SURVEY
+        <span>WATER QUALITY SURVEY</span>
+      </div>
+    </div>
+    <div class="eyebrow">FIELD MANUAL / WATER QUALITY</div>
+    <h1>คู่มือการสำรวจภาคสนาม</h1>
+    <h2>Field Survey Guidebook — คุณภาพน้ำ</h2>
+    <div class="accent"></div>
+    <p>การสำรวจคุณภาพน้ำเป็นการศึกษาสภาพของแหล่งน้ำผ่านการสังเกต การเก็บตัวอย่าง และการตรวจวัดค่าคุณภาพน้ำ เพื่อให้ทราบถึงสภาพน้ำเบื้องต้นและปัจจัยที่อาจส่งผลต่อคุณภาพน้ำ คู่มือนี้รวบรวมแนวทางตั้งแต่การวางแผน เตรียมอุปกรณ์ เก็บตัวอย่าง ตรวจวัด และบันทึกผล เพื่อให้สามารถปฏิบัติงานภาคสนามได้อย่างเป็นระบบและถูกต้อง</p>
+  </div>
+</header>
+
+<!-- แถบสรุป 4 หัวข้อ -->
+<div class="topic-bar">
+  <div class="topic">
+    <strong>01</strong>
+    <span>Planning<br>การวางแผน</span>
+  </div>
+  <div class="topic">
+    <strong>02</strong>
+    <span>Sampling<br>การเก็บตัวอย่าง</span>
+  </div>
+  <div class="topic">
+    <strong>03</strong>
+    <span>Parameters<br>การตรวจวัด</span>
+  </div>
+  <div class="topic">
+    <strong>04</strong>
+    <span>Recording<br>บันทึกผล</span>
+  </div>
+</div>
+
+<main class="container">
+  <!-- หัวข้อ 01 -->
+  <section class="section" id="planning">
+    <div class="section-heading">
+      <div class="number">01</div>
+      <div>
+        <h3>การวางแผนและเตรียมตัวก่อนสำรวจ</h3>
+        <div class="subtitle">Survey Planning and Site Selection</div>
+      </div>
+    </div>
+    
+    <div class="content-grid">
+      <div>
+        <p>ก่อนลงพื้นที่ต้องกำหนดวัตถุประสงค์ให้ชัดเจน เช่น ต้องการศึกษาคุณภาพน้ำในแม่น้ำ คลอง หนอง หรือแหล่งน้ำที่อยู่ใกล้ชุมชน จากนั้นศึกษาพื้นที่จากแผนที่และภาพถ่ายดาวเทียม เพื่อเลือกจุดสำรวจให้ครอบคลุมพื้นที่ โดยอาจแบ่งเป็นจุดอ้างอิงเหนือพื้นที่ศึกษา จุดที่มีกิจกรรมของมนุษย์หรือแหล่งระบายน้ำ และจุดปลายน้ำสำหรับประเมินผลกระทบสะสมและเปรียบเทียบสภาพน้ำอย่างเป็นระบบ</p>
+        <p><strong>อุปกรณ์และเครื่องมือที่ต้องเตรียมพร้อม:</strong> เครื่องวัด pH, DO, อุณหภูมิ และ EC, ภาชนะเก็บตัวอย่างที่เหมาะสม, ฉลากกันน้ำ, ปากกา, กล่องเก็บความเย็น (Ice Box), GPS สำหรับบันทึกพิกัด และอุปกรณ์ป้องกันภัยส่วนบุคคล (PPE) เช่น ถุงมือและรองเท้าบูท</p>
+      </div>
+      <div>
+        <!-- เพิ่มรูปภาพที่คุณต้องการตรงส่วนการวางแผน -->
+        <img class="side-img" src="IMG/nam1.png" alt="การวางแผนและเตรียมตัวก่อนสำรวจ" loading="lazy" />
+      </div>
+    </div>
+
+    <div class="note"><strong>คำแนะนำเรื่องภาชนะ:</strong> ภาชนะเก็บตัวอย่างต้องเลือกให้เหมาะกับชนิดของการวิเคราะห์ เช่น การตรวจจุลชีววิทยาต้องใช้ภาชนะปลอดเชื้อ ส่วนตัวอย่างวิเคราะห์ทางเคมีอาจต้องใช้ภาชนะเฉพาะ ควรตรวจสอบข้อกำหนดกับห้องปฏิบัติการก่อนลงพื้นที่ทุกครั้ง</div>
+  </section>
+
+  <!-- หัวข้อ 02 -->
+  <section class="section" id="sampling">
+    <div class="section-heading">
+      <div class="number">02</div>
+      <div>
+        <h3>การเก็บตัวอย่างน้ำ</h3>
+        <div class="subtitle">Water Sampling Procedures</div>
+      </div>
+    </div>
+    
+    <div class="content-grid reverse">
+      <div>
+        <img class="side-img" src="IMG/nam2.png" alt="เก็บตัวอย่างน้ำ" loading="lazy" />
+      </div>
+      <div>
+        <p>การเก็บตัวอย่างต้องคำนึงถึงความปลอดภัยและป้องกันการปนเปื้อน เพื่อให้ตัวอย่างเป็นตัวแทนของแหล่งน้ำมากที่สุด ก่อนเก็บควรบันทึกรหัสจุด พิกัด วันที่ เวลา สภาพอากาศ และลักษณะน้ำ เช่น สี กลิ่น ฟอง ตะกอน หรือสิ่งผิดปกติที่พบ</p>
+        <p>ขณะเก็บตัวอย่างควรเลือกตำแหน่งตามแผน ไม่กวนตะกอนโดยไม่จำเป็น และใช้ภาชนะให้ตรงกับการวิเคราะห์ หลังเก็บต้องปิดฝาให้สนิท ติดฉลากทันที และเก็บรักษาตามข้อกำหนดของพารามิเตอร์นั้น ๆ</p>
+        <p>ช่วงเวลาเก็บตัวอย่างขึ้นอยู่กับวัตถุประสงค์ หากต้องการเปรียบเทียบหลายจุด ควรเก็บในช่วงเวลาที่ใกล้เคียงกัน ส่วนการศึกษาผลจากฝนหรือการเปลี่ยนแปลงตามฤดูกาล ควรบันทึกสภาพฝนและการไหลของน้ำประกอบด้วย</p>
+      </div>
+    </div>
+
+    <div class="note"><strong>ข้อควรระวัง:</strong> ตัวอย่างแต่ละประเภทอาจมีข้อกำหนดเรื่องภาชนะ อุณหภูมิ และระยะเวลารอก่อนวิเคราะห์ต่างกัน จึงไม่ควรใช้วิธีเก็บรักษาแบบเดียวกันกับทุกตัวอย่าง</div>
+  </section>
+
+  <!-- หัวข้อ 03 -->
+  <section class="section" id="parameters">
+    <div class="section-heading">
+      <div class="number">03</div>
+      <div>
+        <h3>การตรวจวัดคุณภาพน้ำ</h3>
+        <div class="subtitle">Water Quality Measurements & Parameters</div>
+      </div>
+    </div>
+    <p>การตรวจวัดภาคสนามช่วยให้ทราบคุณสมบัติของน้ำ ณ จุดสำรวจ ควรตรวจสอบและปรับเทียบเครื่องมือตามคู่มือผู้ผลิตก่อนใช้งาน รอให้ค่าที่แสดงมีความเสถียร และบันทึกผลพร้อมหน่วยทุกครั้ง</p>
+    
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>พารามิเตอร์</th>
+            <th>ความสำคัญ</th>
+            <th>สิ่งที่ควรคำนึงถึง</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>อุณหภูมิน้ำ</strong></td><td>มีผลต่อสิ่งมีชีวิตและการละลายของออกซิเจน</td><td>บันทึกเวลาและวัดใกล้เคียงกับ DO</td></tr>
+          <tr><td><strong>pH</strong></td><td>แสดงความเป็นกรด–ด่างของน้ำ</td><td>ตรวจสอบการปรับเทียบเครื่องก่อนวัด</td></tr>
+          <tr><td><strong>DO</strong></td><td>แสดงปริมาณออกซิเจนที่ละลายในน้ำ</td><td>วัดภาคสนามโดยเร็วและบันทึกเวลาจริง</td></tr>
+          <tr><td><strong>EC</strong></td><td>สะท้อนความสามารถในการนำไฟฟ้าของน้ำ ซึ่งสัมพันธ์กับไอออนที่ละลายอยู่</td><td>บันทึกหน่วยและอุณหภูมิ</td></tr>
+          <tr><td><strong>ความขุ่น</strong></td><td>แสดงระดับการกระเจิงของแสงจากอนุภาคในน้ำ</td><td>ใช้เครื่องมือและภาชนะที่สะอาด</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-grid">
+      <div>
+        <p><strong>ช่วงเวลาใดเหมาะสำหรับตรวจ DO?</strong><br>
+        ค่า DO เปลี่ยนแปลงได้ตลอดวัน เพราะพืชน้ำและสาหร่ายสังเคราะห์แสงเมื่อมีแสง ขณะที่สิ่งมีชีวิตยังคงใช้ออกซิเจนในการหายใจ:</p>
+        <ul>
+          <li><strong>ช่วงเช้าตรู่:</strong> DO อาจต่ำกว่าช่วงอื่น เนื่องจากไม่มีการสังเคราะห์แสงในเวลากลางคืน</li>
+          <li><strong>ช่วงบ่าย:</strong> DO อาจสูงขึ้น หากมีการสังเคราะห์แสงมากเพียงพอ</li>
+          <li><strong>หากต้องการศึกษาความเปลี่ยนแปลง:</strong> ควรวัดมากกว่าหนึ่งช่วงเวลา เช่น เช้าตรู่และช่วงบ่าย โดยใช้วิธีการและตำแหน่งที่เปรียบเทียบกันได้</li>
+        </ul>
+      </div>
+      <div>
+        <img class="side-img" src="IMG/nam3.png" alt="เครื่องมือวัดค่า DO และ pH" loading="lazy" />
+      </div>
+    </div>
+
+    <div class="note">ไม่ควรใช้ช่วงเวลาเพียงอย่างเดียวตัดสินคุณภาพน้ำ เพราะ DO ยังได้รับผลจากอุณหภูมิ ความลึก การไหลเวียน และกิจกรรมทางชีวภาพด้วย</div>
+
+    <!-- แกลเลอรีรูปภาพอุปกรณ์ประกอบ -->
+    <div class="equipment-gallery" aria-label="ภาพประกอบอุปกรณ์สำรวจคุณภาพน้ำ">
+      <div class="equipment-card">
+        <img class="equipment-photo" src="IMG/nam4.png" alt="ขวดเก็บตัวอย่าง" loading="lazy" />
+        <strong>ขวดเก็บตัวอย่าง</strong><span>เลือกชนิดขวดตามรายการวิเคราะห์</span>
+      </div>
+      <div class="equipment-card">
+        <img class="equipment-photo" src="IMG/nam5.png" alt="เครื่องวัดภาคสนาม" loading="lazy" />
+        <strong>เครื่องวัดภาคสนาม</strong><span>เช่น pH, DO, อุณหภูมิ และ EC</span>
+      </div>
+      <div class="equipment-card">
+        <img class="equipment-photo" src="IMG/nam6.png" alt="กล่องเก็บความเย็น" loading="lazy" />
+        <strong>กล่องเก็บความเย็น</strong><span>ควบคุมอุณหภูมิและรักษาตัวอย่าง</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- หัวข้อ 04 -->
+  <section class="section" id="recording">
+    <div class="section-heading">
+      <div class="number">04</div>
+      <div>
+        <h3>การบันทึกผลและสรุปข้อมูล</h3>
+        <div class="subtitle">Data Recording and Reporting</div>
+      </div>
+    </div>
+    
+    <div class="content-grid reverse">
+      <div>
+        <img class="side-img" src="IMG/nam7.png" alt="บันทึกผลข้อมูล" loading="lazy" />
+      </div>
+      <div>
+        <p>หลังตรวจวัดควรตรวจสอบว่าข้อมูลทุกจุดครบถ้วน โดยบันทึกรหัสจุด วันที่ เวลา พิกัด สภาพอากาศ ค่าที่วัดได้ หน่วย และข้อสังเกต หากค่าผิดปกติควรตรวจสอบเครื่องมือและวัดซ้ำตามความเหมาะสม โดยเก็บค่าที่วัดได้จริงไว้ ไม่ปรับเปลี่ยนข้อมูลเพื่อให้ตรงกับค่าที่คาดหวัง</p>
+        <p>เมื่อนำข้อมูลมาวิเคราะห์ สามารถเปรียบเทียบคุณภาพน้ำระหว่างจุดสำรวจ ช่วงเวลา หรือฤดูกาล และนำเสนอด้วยตาราง กราฟ หรือแผนที่ได้ อย่างไรก็ตาม ความแตกต่างของค่าไม่ได้ยืนยันสาเหตุของปัญหาโดยตรง จึงควรพิจารณาร่วมกับสภาพแวดล้อมและข้อมูลอื่นที่เกี่ยวข้อง</p>
+        <p>ก่อนออกจากพื้นที่ควรตรวจนับอุปกรณ์ เก็บขยะและวัสดุที่เกิดจากการปฏิบัติงาน ตรวจสอบฉลากตัวอย่าง และส่งตัวอย่างไปวิเคราะห์ภายในระยะเวลาที่กำหนด</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- รายการตรวจสอบ (Checklist) -->
+  <section class="checklist" id="checklist">
+    <h3>เช็กลิสต์ก่อนจบงาน</h3>
+    <p>ตรวจสอบความครบถ้วนของข้อมูลและอุปกรณ์ก่อนสิ้นสุดการสำรวจ</p>
+    <div class="check-grid">
+      <label class="check-item"><input type="checkbox"><span>เตรียมอุปกรณ์และภาชนะครบถ้วน</span></label>
+      <label class="check-item"><input type="checkbox"><span>ตรวจสอบเครื่องมือก่อนใช้งาน</span></label>
+      <label class="check-item"><input type="checkbox"><span>บันทึกพิกัด วันที่ และเวลา</span></label>
+      <label class="check-item"><input type="checkbox"><span>เก็บตัวอย่างและติดฉลากครบทุกจุด</span></label>
+      <label class="check-item"><input type="checkbox"><span>บันทึกค่าคุณภาพน้ำพร้อมหน่วย</span></label>
+      <label class="check-item"><input type="checkbox"><span>เก็บรักษาและส่งตัวอย่างตามข้อกำหนด</span></label>
+      <label class="check-item"><input type="checkbox"><span>ตรวจสอบข้อมูลและเก็บพื้นที่เรียบร้อย</span></label>
+    </div>
+    <div class="checklist-actions">
+      <button class="export-btn" type="button" onclick="exportChecklistCSV()">ส่งออก Checklist (CSV)</button>
+      <button class="reset-btn" type="button" onclick="resetChecklist()">ล้างรายการที่เลือก</button>
+    </div>
+  </section>
+</main>
+
+<!-- ส่วนท้าย -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-brand">
+          <svg class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="โลโก้ AQUA SURVEY">
+            <defs>
+              <linearGradient id="footerWater" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#62e2df"/>
+                <stop offset="100%" stop-color="#1597b4"/>
+              </linearGradient>
+            </defs>
+            <circle cx="50" cy="50" r="46" fill="none" stroke="#b9f1ee" stroke-width="1.5"/>
+            <path d="M50 10 C42 24 25 42 25 59 C25 75 36 86 50 86 C64 86 75 75 75 59 C75 42 58 24 50 10Z" fill="url(#footerWater)"/>
+            <path d="M34 57 C42 50 51 50 66 57 C58 65 46 68 34 64" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="M35 72 C44 76 56 76 64 70" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="69" cy="31" r="4" fill="#fff"/>
+          </svg>
+          <div class="footer-brand-name">
+            AQUA SURVEY
+            <div>WATER QUALITY SURVEY</div>
+          </div>
+        </div>
+        <p>คู่มือการสำรวจภาคสนามด้านคุณภาพน้ำ</p>
+        <p>แนวทางเบื้องต้นสำหรับการวางแผน การเก็บตัวอย่าง และการตรวจวัดคุณภาพน้ำภาคสนาม</p>
+      </div>
+      <div class="footer-col">
+        <h3>เอกสารอ้างอิง</h3>
+        <ol>
+          <li>เอกสารประกอบการเรียนสไลด์ โดย อาจารย์สุพรรณี ทักษิณสัมพันธุ์</li>
+          <li>คู่มือการใช้งานเครื่องมือตรวจวัดคุณภาพน้ำจากผู้ผลิต</li>
+          <li>วิธีมาตรฐานการเก็บรักษาและวิเคราะห์ตัวอย่างน้ำของห้องปฏิบัติการที่เกี่ยวข้อง</li>
+        </ol>
+      </div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-col">
+      <h3>ผู้จัดทำเว็บไซต์</h3>
+      <div class="author-info">
+        <strong>ชื่อ–นามสกุล:</strong><span>นางสาว สิตีไอร์ซะห์ หะยีเด</span>
+        <strong>คณะ:</strong><span>คณะมนุษยศาสตร์และสังคมศาสตร์</span>
+        <strong>สาขาวิชา:</strong><span>ภูมิศาสตร์</span>
+        <strong>มหาวิทยาลัย:</strong><span>มหาวิทยาลัยสงขลานครินทร์ วิทยาเขตปัตตานี</span>
+      </div>
+    </div>
+    <div style="margin-top: 15px; font-size: 11px; color: #bceff0; line-height: 1.6;">
+      <strong>หมายเหตุ:</strong> รายละเอียดวิธีเก็บรักษาตัวอย่างและเกณฑ์มาตรฐานควรตรวจสอบจากวิธีวิเคราะห์และข้อกำหนดที่ใช้จริงก่อนลงพื้นที่
+    </div>
+    <div class="copyright">
+      AQUA SURVEY — Field Survey Guidebook: Water Quality
+    </div>
+  </div>
+</footer>
+
+<script>
+function resetChecklist() {
+  document.querySelectorAll('.checklist input[type="checkbox"]').forEach(function(item) {
+    item.checked = false;
+  });
+}
+
+function getChecklistData() {
+  return Array.from(document.querySelectorAll('.checklist .check-item')).map(function(label, index) {
+    var checkbox = label.querySelector('input[type="checkbox"]');
+    var text = label.querySelector('span').textContent.trim();
+    // อัปเดตสถานะเป็น ทำแล้ว / ยังไม่ทำ ตามที่ขอ
+    return { number: index + 1, item: text, status: checkbox.checked ? 'ทำแล้ว' : 'ยังไม่ทำ' };
+  });
+}
+
+function exportChecklistCSV() {
+  var rows = getChecklistData();
+  var csvRows = [['ลำดับ', 'รายการตรวจสอบ', 'สถานะ']];
+  rows.forEach(function(row) {
+    csvRows.push([row.number, row.item, row.status]);
+  });
+  function escapeCSV(value) {
+    return '"' + String(value).replace(/"/g, '""') + '"';
+  }
+  var csv = '\uFEFF' + csvRows.map(function(row) {
+    return row.map(escapeCSV).join(',');
+  }).join('\r\n');
+  var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  var url = URL.createObjectURL(blob);
+  var link = document.createElement('a');
+  link.href = url;
+  link.download = 'AQUA_SURVEY_Checklist.csv';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
+</script>
+</body>
+</html>
