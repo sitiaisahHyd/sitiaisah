@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>กองเฝ้าระวังแผ่นดินไหว - กรมอุตุนิยมวิทยา</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Sarabun', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="bg-red-700 text-white px-4 py-2 text-xs md:text-sm font-medium shadow-inner flex items-center justify-between">
+        <div class="container mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-2 animate-pulse">
+                <span class="bg-white text-red-700 px-2 py-0.5 rounded font-bold text-xs">⚠️ ประกาศเตือนภัยด่วน</span>
+                <span>รายงานแผ่นดินไหวล่าสุด ขนาด 4.8 บริเวณพรมแดนเมียนมา-ไทย ประชาชนในโซนภาคเหนือรับรู้ถึงแรงสั่นไหว</span>
+            </div>
+            <span class="hidden md:inline bg-red-800 px-2 py-1 rounded text-xs">อัปเดตล่าสุด: วันนี้ 18:30 น.</span>
+        </div>
+    </div>
+
+    <header class="bg-white border-b border-slate-200 shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="bg-red-600 text-white w-12 h-12 rounded-lg shadow flex items-center justify-center font-bold text-2xl">
+                    ⚡
+                </div>
+                <div>
+                    <h1 class="text-lg md:text-xl font-bold text-blue-950">กองเฝ้าระวังแผ่นดินไหว</h1>
+                    <p class="text-xs text-slate-500">Earthquake Observation Division - กรมอุตุนิยมวิทยา</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-4 mt-3 md:mt-0">
+                <nav class="hidden lg:flex space-x-4 text-xs font-semibold text-slate-700">
+                    <a href="#latest" class="hover:text-blue-700 transition">📊 รายงานล่าสุด</a>
+                    <a href="#history" class="hover:text-blue-700 transition">📚 ประวัติศาสตร์</a>
+                    <a href="#faults" class="hover:text-blue-700 transition">🌐 รอยเลื่อนมีพลัง</a>
+                    <a href="#safety" class="hover:text-blue-700 transition">🚨 คู่มือความปลอดภัย</a>
+                    <a href="#global-history" class="hover:text-blue-700 transition">🌍 ประวัติโลก (2000-2026)</a>
+                </nav>
+                <button onclick="toggleLoginModal()" class="bg-blue-900 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-xs font-semibold shadow transition flex items-center space-x-1">
+                    <span>🔐 เข้าสู่ระบบ</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 space-y-12">
+
+        <section id="latest" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 pb-4 border-b border-slate-100 gap-4">
+                <div>
+                    <h2 class="text-xl font-bold text-blue-950 flex items-center">
+                        <span class="bg-red-100 text-red-600 p-2 rounded-lg mr-2 text-base">⚠️</span> 
+                        รายงานแผ่นดินไหวล่าสุด (Real-time Seismic Report)
+                    </h2>
+                    <p class="text-xs text-slate-500 mt-1">ประมวลผลอัตโนมัติจากเครือข่ายสถานีตรวจวัดแผ่นดินไหวทั่วประเทศ</p>
+                </div>
+                <span class="text-xs bg-emerald-100 text-emerald-800 px-3 py-1.5 rounded-lg font-bold">🟢 สถานะระบบ: ปกติ (24/7)</span>
+            </div>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-100 text-slate-700 text-xs font-bold">
+                            <th class="p-3 border-b">🕒 วัน-เวลา (เวลาไทย)</th>
+                            <th class="p-3 border-b">📉 ขนาด (Richter)</th>
+                            <th class="p-3 border-b">📍 พิกัด (Lat / Long)</th>
+                            <th class="p-3 border-b">📏 ความลึก</th>
+                            <th class="p-3 border-b">🗺️ สถานที่เกิดเหตุ</th>
+                            <th class="p-3 border-b">💬 แรงสั่นสะเทือน</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-xs divide-y divide-slate-100">
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-medium">06 มิ.ย. 2026 - 21:20:10</td>
+                            <td class="p-3 text-red-600 font-bold text-sm">4.8</td>
+                            <td class="p-3 text-slate-500">21.25°N, 99.85°E</td>
+                            <td class="p-3">10 กม.</td>
+                            <td class="p-3 font-semibold text-slate-900">ประเทศเมียนมา (พรมแดนไทย)</td>
+                            <td class="p-3"><span class="bg-amber-100 text-amber-800 px-2 py-1 rounded">รู้สึกได้ที่เชียงใหม่/เชียงราย</span></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-medium">06 มิ.ย. 2026 - 17:05:00</td>
+                            <td class="p-3 text-amber-500 font-bold text-sm">3.2</td>
+                            <td class="p-3 text-slate-500">19.05°N, 98.95°E</td>
+                            <td class="p-3">5 กม.</td>
+                            <td class="p-3 font-semibold text-slate-900">อำเภอแม่ริม จังหวัดเชียงใหม่</td>
+                            <td class="p-3"><span class="bg-emerald-100 text-emerald-800 px-2 py-1 rounded">เบามาก (ไม่เสียหาย)</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="history" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+            <h2 class="text-xl font-bold text-blue-950 mb-2 flex items-center">
+                <span class="bg-blue-100 text-blue-800 p-2 rounded-lg mr-2 text-base">📚</span> 
+                คลังประวัติและสถิติเหตุการณ์แผ่นดินไหวครั้งสำคัญ
+            </h2>
+            <p class="text-xs text-slate-500 mb-6">บันทึกเหตุการณ์ภัยพิบัติทางธรณีวิทยาที่สำคัญ ทั้งในประเทศไทยและระดับโลก</p>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs text-red-600 font-bold bg-red-50 px-2 py-1 rounded">🇹🇭 5 พฤษภาคม 2557 (อ.แม่ลาว จ.เชียงราย)</span>
+                        <h3 class="font-bold text-sm text-blue-950 mt-2">แผ่นดินไหวขนาด 6.3 สร้างความเสียหายหนักในภาคเหนือ</h3>
+                        <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                            เกิดความเสียหายต่อบ้านเรือน โรงเรียน และโบราณสถานหลายแห่ง แรงสั่นสะเทือนรับรู้ได้ถึงกรุงเทพมหานคร
+                        </p>
+                    </div>
+                    <div class="mt-4 rounded-lg overflow-hidden shadow-sm border border-slate-200">
+                        <img src="IMG/img6.jpg" alt="ความเสียหายจากแผ่นดินไหว" class="w-full h-44 object-cover">
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs text-red-600 font-bold bg-red-50 px-2 py-1 rounded">🌊 26 ธันวาคม 2547 (สุมาตรา-อันดามัน)</span>
+                        <h3 class="font-bold text-sm text-blue-950 mt-2">แผ่นดินไหวรุนแรง 9.1-9.3 และคลื่นสึนามิ</h3>
+                        <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                            ส่งผลกระทบต่อ 6 จังหวัดชายฝั่งทะเลอันดามัน นำมาสู่การจัดตั้งระบบเตือนภัยสึนามิแห่งชาติ
+                        </p>
+                    </div>
+                    <div class="mt-4 rounded-lg overflow-hidden shadow-sm border border-slate-200">
+                        <img src="IMG/img7.jpg" alt="คลื่นสึนามิชายฝั่ง" class="w-full h-44 object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+       <section id="faults" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+    <h2 class="text-xl font-bold text-blue-950 mb-2 flex items-center">
+        <span class="bg-blue-100 text-blue-800 p-2 rounded-lg mr-2 text-base">🌐</span> 
+        องค์ความรู้: รอยเลื่อนมีพลัง (Active Faults) และกลไกการเกิด
+    </h2>
+    <p class="text-xs text-slate-500 mb-6">ความรู้พื้นฐานทางธรณีวิทยาเกี่ยวกับรอยเลื่อนที่มีโอกาสขยับตัวและปลดปล่อยพลังงาน</p>
+
+    <!-- ปรับแบ่งคอลัมน์เป็น 5 ส่วน (ข้อความ 3 / รูปภาพ 2) และใช้ items-start -->
+    <div class="grid md:grid-cols-5 gap-6 items-start">
+        
+        <!-- ฝั่งซ้าย: กล่องข้อความ (ขยายเป็น 3 ส่วน) -->
+        <div class="md:col-span-3 space-y-4 text-xs text-slate-700">
+            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                <h4 class="font-bold text-sm text-blue-950 mb-1">📌 รอยเลื่อนแม่จัน (จ.เชียงราย - เชียงใหม่)</h4>
+                <p class="text-slate-600">เป็นหนึ่งในรอยเลื่อนมีพลังสำคัญทางภาคเหนือ พาดผ่านอำเภอฝาง แม่จัน และเชียงแสน มีอัตราการเคลื่อนตัวที่ต้องเฝ้าระวังพิเศษ</p>
+            </div>
+            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                <h4 class="font-bold text-sm text-blue-950 mb-1">📌 รอยเลื่อนศรีสวัสดิ์และเจดีย์สามองค์ (จ.กาญจนบุรี)</h4>
+                <p class="text-slate-600">พาดผ่านบริเวณตะวันตกของประเทศ ใกล้กับอ่างเก็บน้ำขนาดใหญ่ มีการติดตั้งสถานีตรวจวัดแรงสั่นสะเทือนแบบเรียลไทม์</p>
+            </div>
+        </div>
+
+        <!-- ฝั่งขวา: รูปภาพ (จำกัดขนาดเหลือ 2 ส่วน + คุมความสูงไม่ให้ล้น) -->
+        <div class="md:col-span-2 rounded-xl overflow-hidden shadow-sm border border-slate-200 bg-white flex flex-col items-center">
+            <img src="IMG/img111.jpg" alt="โครงสร้างเปลือกโลกและรอยเลื่อน" class="w-full max-h-80 object-contain p-2">
+            <div class="p-2 bg-slate-100 text-center text-[11px] text-slate-500 w-full">
+                🌐 ภาพจำลองรอยแยกและแนวแผ่นเปลือกโลกใต้พื้นผิวโลก
+            </div>
+        </div>
+
+    </div>
+</section>
+
+        <section id="safety" class="bg-slate-900 text-white rounded-2xl shadow-sm p-6">
+            <h2 class="text-xl font-bold mb-2 text-center">🚨 คู่มือความปลอดภัย: วิธีปฏิบัติตนเมื่อเกิดแผ่นดินไหว</h2>
+            <p class="text-slate-400 text-center text-xs mb-8">ความรู้ที่ช่วยชีวิต: ปฏิบัติตามหลักการสากล "หมอบ ป้องกัน และยึดเกาะ"</p>
+
+            <div class="grid md:grid-cols-3 gap-6 text-xs">
+                <div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
+                    <div class="text-blue-400 font-bold text-base mb-2">1. 🛡️ ขณะเกิดเหตุ (Drop, Cover, Hold)</div>
+                    <ul class="space-y-2 text-slate-300">
+                        <li>• <strong>หมอบลง (Drop):</strong> ลงใต้โต๊ะหรือเฟอร์นิเจอร์ที่แข็งแรงทันที</li>
+                        <li>• <strong>ป้องกันศีรษะ (Cover):</strong> ใช้มือปกป้องศีรษะและลำคอ</li>
+                        <li>• <strong>ยึดเกาะ (Hold):</strong> จับขาโต๊ะให้มั่นคงจนกว่าการสั่นจะสงบ</li>
+                    </ul>
+                </div>
+                <div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
+                    <div class="text-amber-400 font-bold text-base mb-2">2. 🌳 หากอยู่กลางแจ้ง</div>
+                    <ul class="space-y-2 text-slate-300">
+                        <li>• รีบเคลื่อนย้ายไปยังพื้นที่โล่งแจ้งทันที</li>
+                        <li>• อยู่ให้ห่างจากตึกสูง เสาไฟฟ้า และป้ายโฆษณาขนาดใหญ่</li>
+                        <li>• หากอยู่ใกล้ชายทะเล ให้รีบอพยพขึ้นที่สูงทันที</li>
+                    </ul>
+                </div>
+                <div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
+                    <div class="text-emerald-400 font-bold text-base mb-2">3. ⚠️ หลังเกิดเหตุ</div>
+                    <ul class="space-y-2 text-slate-300">
+                        <li>• ตรวจสอบความเสียหายโครงสร้างบ้าน แก๊สรั่ว หรือไฟช็อต</li>
+                        <li>• ระวังแรงสั่นสะเทือนต่อเนื่อง (Aftershocks)</li>
+                        <li>• ติดตามข่าวสารจากประกาศทางการของกรมอุตุนิยมวิทยา</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="global-history" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 pb-4 border-b border-slate-100 gap-4">
+                <div>
+                    <h2 class="text-xl font-bold text-blue-950 flex items-center">
+                        <span class="bg-indigo-100 text-indigo-700 p-2 rounded-lg mr-2 text-base">🌍</span> 
+                        บันทึกประวัติเหตุการณ์แผ่นดินไหวครั้งสำคัญ (รายปี ค.ศ. 2000 - 2026)
+                    </h2>
+                    <p class="text-xs text-slate-500 mt-1">รายละเอียดเหตุการณ์แผ่นดินไหวสำคัญครบถ้วนทุกปีตั้งแต่ปี ค.ศ. 2000 จนถึงปัจจุบัน</p>
+                </div>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-100 text-slate-700 text-xs font-bold">
+                            <th class="p-3 border-b">📅 ปี (C.E.)</th>
+                            <th class="p-3 border-b">📉 ขนาด</th>
+                            <th class="p-3 border-b">🗺️ พื้นที่เกิดเหตุ</th>
+                            <th class="p-3 border-b">📌 รายละเอียดเหตุการณ์สำคัญ</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-xs divide-y divide-slate-100">
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-slate-900">2026</td>
+                            <td class="p-3 text-red-600 font-bold">7.5</td>
+                            <td class="p-3">คาบสมุทรโนโตะ ประเทศญี่ปุ่น</td>
+                            <td class="p-3 text-slate-600">เกิดแผ่นดินไหวรุนแรงช่วงต้นปี อาคารบ้านเรือนพังเสียหาย และประกาศเตือนภัยสึนามิชายฝั่งทะเลญี่ปุ่น</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-slate-900">2025</td>
+                            <td class="p-3 text-red-600 font-bold">7.0</td>
+                            <td class="p-3">นอกชายฝั่งรัฐแคลิฟอร์เนีย สหรัฐอเมริกา</td>
+                            <td class="p-3 text-slate-600">เกิดแผ่นดินไหวใต้ทะเลลึก มีการประกาศเตือนภัยสึนามิระยะสั้นและเฝ้าระวังอาฟเตอร์ช็อก</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-slate-900">2024</td>
+                            <td class="p-3 text-red-600 font-bold">7.4</td>
+                            <td class="p-3">เมืองฮวาเหลียน ประเทศไต้หวัน</td>
+                            <td class="p-3 text-slate-600">แผ่นดินไหวครั้งใหญ่สุดในรอบ 25 ปีของไต้หวัน ส่งผลให้อาคารเอียงทรุดและหินถล่มตามแนวภูเขา</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-slate-900">2023</td>
+                            <td class="p-3 text-red-600 font-bold">7.8</td>
+                            <td class="p-3">ประเทศตุรกีและซีเรีย</td>
+                            <td class="p-3 text-slate-600">แผ่นดินไหวครั้งใหญ่ที่สุดครั้งหนึ่งในรอบทศวรรษ สร้างความเสียหายรุนแรงเป็นวงกว้างและมีผู้เสียชีวิตจำนวนมาก</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-slate-900">2022</td>
+                            <td class="p-3 text-amber-600 font-bold">5.6</td>
+                            <td class="p-3">จังหวัดชวาตะวันตก ประเทศอินโดนีเซีย</td>
+                            <td class="p-3 text-slate-600">แผ่นดินไหวระดับตื้น ส่งผลให้บ้านเรือนพังเสียหายหนักและมีดินถล่มทับพื้นที่ชุมชนใกล้เมืองจันเจียร์</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-slate-900">2021</td>
+                            <td class="p-3 text-red-600 font-bold">7.2</td>
+                            <td class="p-3">ประเทศเฮติ</td>
+                            <td class="p-3 text-slate-600">แผ่นดินไหวรุนแรงซ้ำเติมพื้นที่ทางตอนใต้ของประเทศ สร้างความเสียหายต่อที่อยู่อาศัยและโรงพยาบาล</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-slate-900">2020</td>
+                            <td class="p-3 text-red-600 font-bold">7.0</td>
+                            <td class="p-3">ทะเลอีเจียน (ตุรกีและกรีซ)</td>
+                            <td class="p-3 text-slate-600">ส่งผลให้อาคารหลายหลังในเมืองอิซเมิร์ตพังถล่ม และเกิดคลื่นสึนามิขนาดเล็กซัดเข้าชายฝั่ง</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-slate-900">2019</td>
+                            <td class="p-3 text-red-600 font-bold">6.4</td>
+                            <td class="p-3">เกาะมินดาเนา ประเทศฟิลิปปินส์</td>
+                            <td class="p-3 text-slate-600">เกิดแผ่นดินไหวต่อเนื่องหลายระลอก สร้างความเสียหายต่อโครงสร้างพื้นฐานและที่พักอาศัย</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-slate-900">2018</td>
+                            <td class="p-3 text-red-600 font-bold">7.5</td>
+                            <td class="p-3">เกาะสุลาเวสี ประเทศอินโดนีเซีย</td>
+                            <td class="p-3 text-slate-600">แผ่นดินไหวตื้นตามด้วยสึนามิและปรากฏการณ์ดินเหลว (Liquefaction) กลืนกินชุมชนทั้งแถบ</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-slate-900">2017</td>
+                            <td class="p-3 text-red-600 font-bold">7.1</td>
+                            <td class="p-3">ตอนกลางของประเทศเม็กซิโก</td>
+                            <td class="p-3 text-slate-600">เกิดตรงกับวันครบรอบแผ่นดินไหวใหญ่ปี 1985 อาคารสูงในเม็กซิโกพังถล่มหลายแห่ง</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-slate-900">2016</td>
+                            <td class="p-3 text-red-600 font-bold">7.0</td>
+                            <td class="p-3">จังหวัดคุมาโมโตะ ประเทศญี่ปุ่น</td>
+                            <td class="p-3 text-slate-600">เกิดแรงสั่นสะเทือนต่อเนื่อง (Swarm Earthquakes) สร้างความเสียหายต่อโครงสร้างพื้นฐานและปราสาทคุมาโมโตะ</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-slate-900">2015</td>
+                            <td class="p-3 text-red-600 font-bold">7.8</td>
+                            <td class="p-3">ประเทศเนปาล</td>
+                            <td class="p-3 text-slate-600">สร้างความเสียหายหนักต่อโบราณสถาน มรดกโลก และยอดเขาเอเวอเรสต์ (เกิดหิมะถล่ม)</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-slate-900">2014</td>
+                            <td class="p-3 text-amber-600 font-bold">6.1</td>
+                            <td class="p-3">อำเภอแม่ลาว จังหวัดเชียงราย (ไทย)</td>
+                            <td class="p-3 text-slate-600">แผ่นดินไหวครั้งประวัติศาสตร์ในไทย สร้างความเสียหายหนักแก่บ้านเรือน วัด และโรงเรียนในภาคเหนือ</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-slate-900">2013</td>
+                            <td class="p-3 text-red-600 font-bold">7.1</td>
+                            <td class="p-3">เกาะโบโฮล ประเทศฟิลิปปินส์</td>
+                            <td class="p-3 text-slate-600">ทำลายโบราณสถานเก่าแก่และสร้างความเสียหายต่อโครงสร้างบ้านเรือนประชาชนเป็นวงกว้าง</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-slate-900">2012</td>
+                            <td class="p-3 text-red-600 font-bold">8.6</td>
+                            <td class="p-3">นอกชายฝั่งสุมาตรา ประเทศอินโดนีเซีย</td>
+                            <td class="p-3 text-slate-600">แผ่นดินไหวใต้ทะเลขนาดใหญ่แบบ Strike-slip รู้สึกสั่นไหวได้ในหลายจังหวัดภาคใต้ของไทย</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-slate-900">2011</td>
+                            <td class="p-3 text-red-600 font-bold">9.0 - 9.1</td>
+                            <td class="p-3">โทโฮคุ ประเทศญี่ปุ่น</td>
+                            <td class="p-3 text-slate-600">แผ่นดินไหวใต้ทะเลนอกชายฝั่ง ส่งผลให้เกิดคลื่นสึนามิสูงและวิกฤตการณ์โรงไฟฟ้าพลังงานนิวเคลียร์ฟุกุชิมะ</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-slate-900">2010</td>
+                            <td class="p-3 text-red-600 font-bold">7.0</td>
+                            <td class="p-3">ประเทศเฮติ</td>
+                            <td class="p-3 text-slate-600">จุดศูนย์กลางใกล้เมืองหลวง ปรากฏการณ์ความเสียหายรุนแรงต่อชีวิตและทรัพย์สินของประชาชน</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-slate-900">2009</td>
+                            <td class="p-3 text-red-600 font-bold">7.6</td>
+                            <td class="p-3">เมืองปาดัง ประเทศอินโดนีเซีย</td>
+                            <td class="p-3 text-slate-600">สร้างความเสียหายต่ออาคารบ้านเรือน โรงแรม และมีผู้ติดใต้ซากปรักหักพังเป็นจำนวนมาก</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-slate-900">2008</td>
+                            <td class="p-3 text-red-600 font-bold">7.9</td>
+                            <td class="p-3">มณฑลเสฉวน ประเทศจีน</td>
+                            <td class="p-3 text-slate-600">แผ่นดินไหวเสฉวน ส่งผลให้อาคารบ้านเรือนและโรงเรียนพังถล่มลงมาเป็นวงกว้าง</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-slate-900">2007</td>
+                            <td class="p-3 text-red-600 font-bold">8.5</td>
+                            <td class="p-3">เกาะสุมาตรา ประเทศอินโดนีเซีย</td>
+                            <td class="p-3 text-slate-600">เกิดแผ่นดินไหวรุนแรงใกล้เกาะสุมาตรา มีการประกาศเตือนภัยสึนามิในแถบมหาสมุทรอินเดีย</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-slate-900">2006</td>
+                            <td class="p-3 text-red-600 font-bold">6.3</td>
+                            <td class="p-3">เมืองยอกยาการ์ตา ประเทศอินโดนีเซีย</td>
+                            <td class="p-3 text-slate-600">แผ่นดินไหวระดับตื้นสร้างความเสียหายหนักแก่บ้านเรือนและโบราณสถานสำคัญทางประวัติศาสตร์</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-slate-900">2005</td>
+                            <td class="p-3 text-red-600 font-bold">8.6</td>
+                            <td class="p-3">เกาะนีอัส ประเทศอินโดนีเซีย</td>
+                            <td class="p-3 text-slate-600">เหตุการณ์ต่อเนื่องใกล้เคียงกับปี 2004 ส่งผลกระทบต่อเกาะใกล้เคียงและสร้างความตื่นตระหนกในไทย</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-slate-900">2004</td>
+                            <td class="p-3 text-red-600 font-bold">9.1 - 9.3</td>
+                            <td class="p-3">เกาะสุมาตรา ประเทศอินโดนีเซีย</td>
+                            <td class="p-3 text-slate-600">มหันตภัยแผ่นดินไหวและสึนามิครั้งประวัติศาสตร์กระทบ 6 จังหวัดภาคใต้ฝั่งอันดามันของไทย</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-slate-900">2003</td>
+                            <td class="p-3 text-red-600 font-bold">6.6</td>
+                            <td class="p-3">เมืองบัม ประเทศอิหร่าน</td>
+                            <td class="p-3 text-slate-600">ทำลายเมืองโบราณบัมและป้อมปราการอิฐดินดิบโบราณพังเสียหายเกือบทั้งหมด</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-slate-900">2002</td>
+                            <td class="p-3 text-red-600 font-bold">7.1</td>
+                            <td class="p-3">เกาะมินดาเนา ประเทศฟิลิปปินส์</td>
+                            <td class="p-3 text-slate-600">เกิดแรงสั่นสะเทือนรุนแรง ส่งผลให้โครงสร้างสะพานและอาคารบ้านเรือนได้รับความเสียหาย</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-slate-900">2001</td>
+                            <td class="p-3 text-amber-600 font-bold">7.7</td>
+                            <td class="p-3">รัฐคุชราต ประเทศอินเดีย</td>
+                            <td class="p-3 text-slate-600">แผ่นดินไหววันชาติอินเดีย สร้างความเสียหายแก่อาคารบ้านเรือนและระบบสาธารณูปโภคเป็นวงกว้าง</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-slate-900">2000</td>
+                            <td class="p-3 text-red-600 font-bold">7.9</td>
+                            <td class="p-3">เกาะสุมาตรา ประเทศอินโดนีเซีย</td>
+                            <td class="p-3 text-slate-600">แผ่นดินไหวรุนแรงช่วงต้นทศวรรษ เปิดฉากยุคแห่งความตื่นตัวด้านธรณีพิบัติภัยในภูมิภาคเอเชียตะวันออกเฉียงใต้</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-blue-950 text-slate-300 mt-16 pt-12 pb-6 border-t border-blue-900 text-xs">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div>
+                <h4 class="text-white font-bold text-sm mb-3 border-b border-blue-900 pb-1">🏛️ เกี่ยวกับหน่วยงาน</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-white transition">📌 ประวัติและความเป็นมา</a></li>
+                    <li><a href="#" class="hover:text-white transition">📌 โครงสร้างองค์กรและภารกิจ</a></li>
+                    <li><a href="#" class="hover:text-white transition">📌 เครือข่ายสถานีตรวจวัด</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-3 border-b border-blue-900 pb-1">📊 ข้อมูลและสถิติ</h4>
+                <ul class="space-y-2">
+                    <li><a href="#latest" class="hover:text-white transition">📌 รายงานแผ่นดินไหวรายวัน</a></li>
+                    <li><a href="#global-history" class="hover:text-white transition">📌 ประวัติแผ่นดินไหวโลก (2000-2026)</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-3 border-b border-blue-900 pb-1">💡 องค์ความรู้และบริการ</h4>
+                <ul class="space-y-2">
+                    <li><a href="#faults" class="hover:text-white transition">📌 ข้อมูลรอยเลื่อนมีพลังในไทย</a></li>
+                    <li><a href="#safety" class="hover:text-white transition">📌 คู่มือแผนเผชิญเหตุ</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-3 border-b border-blue-900 pb-1">📞 ศูนย์ปฏิบัติการ</h4>
+                <p class="leading-relaxed text-slate-400">
+                    กองเฝ้าระวังแผ่นดินไหว กรมอุตุนิยมวิทยา<br>
+                    ถนนสุขุมวิท เขตบางนา กรุงเทพฯ 10260<br>
+                    📞 สายด่วน: 1182 หรือ 02-399-4547
+                </p>
+            </div>
+        </div>
+        <div class="text-center text-slate-400 border-t border-blue-900 pt-6">
+            © 2026 กองเฝ้าระวังแผ่นดินไหว กรมอุตุนิยมวิทยา. สงวนลิขสิทธิ์ทั้งหมด.
+        </div>
+    </footer>
+
+    <div id="loginModal" class="fixed inset-0 bg-black/65 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-6 relative">
+            <button onclick="toggleLoginModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 font-bold text-lg">✕</button>
+            <div class="text-center mb-6">
+                <div class="bg-red-100 text-red-900 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2 text-xl font-bold">🔐</div>
+                <h3 class="text-lg font-bold text-blue-950">เข้าสู่ระบบเจ้าหน้าที่</h3>
+                <p class="text-xs text-slate-500">สำหรับเจ้าหน้าที่ผู้ดูแลระบบและนักวิชาการแผ่นดินไหว</p>
+            </div>
+            <form onsubmit="event.preventDefault(); alert('🎉 เข้าสู่ระบบเจ้าหน้าที่สำเร็จ!'); toggleLoginModal();" class="space-y-4 text-xs">
+                <div>
+                    <label class="block font-semibold text-slate-700 mb-1">📧 อีเมลเจ้าหน้าที่</label>
+                    <input type="text" required class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-700" placeholder="admin@seismology.go.th">
+                </div>
+                <div>
+                    <label class="block font-semibold text-slate-700 mb-1">🔑 รหัสผ่าน</label>
+                    <input type="password" required class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-700" placeholder="••••••••">
+                </div>
+                <button type="submit" class="w-full bg-red-700 hover:bg-red-800 text-white py-2.5 rounded-lg font-semibold shadow transition">
+                    🚀 เข้าสู่ระบบ
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleLoginModal() {
+            const modal = document.getElementById('loginModal');
+            modal.classList.toggle('hidden');
+        }
+    </script>
+
+</body>
+</html>
